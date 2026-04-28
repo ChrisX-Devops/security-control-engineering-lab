@@ -18,3 +18,11 @@ High
 ## Recommendation
 Replace `AdministratorAccess` with scoped, role-based access aligned to operational need.
 Enforce least privilege and require MFA for privileged identities.
+
+---
+
+## Remediation Status
+Remediated
+
+## Remediation Summary
+Excessive administrative access was removed and replaced with a scoped read-only IAM policy. MFA was enabled for the IAM user to strengthen authentication controls.
