@@ -1,0 +1,4 @@
+{"users":[
+{"name":"audit-test-user","attached_policies":[
+    "IAMAuditReadOnly"
+]}]}
