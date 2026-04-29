@@ -1,0 +1,3 @@
+[
+  "User legacy-admin is over-permissioned: AdministratorAccess attached"
+]

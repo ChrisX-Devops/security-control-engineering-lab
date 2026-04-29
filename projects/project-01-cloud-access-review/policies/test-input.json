@@ -1,0 +1,12 @@
+{
+  "users": [
+    {
+      "name": "audit-test-user",
+      "attached_policies": ["IAMAuditReadOnly"]
+    },
+    {
+      "name": "legacy-admin",
+      "attached_policies": ["AdministratorAccess"]
+    }
+  ]
+}
