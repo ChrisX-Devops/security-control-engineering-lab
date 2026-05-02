@@ -1,0 +1,6 @@
+ username | failed_attempts | ip_address  |    location     
+----------+-----------------+-------------+-----------------
+ alice    |               3 | 45.33.22.11 | Moscow, Russia
+ charlie  |               2 | 172.16.0.20 | Berlin, Germany
+(2 rows)
+
