@@ -1,0 +1,6 @@
+ username |  first_login_time   |   first_location   |  second_login_time  | second_location | minutes_between_logins 
+----------+---------------------+--------------------+---------------------+-----------------+------------------------
+ admin    | 2026-05-02 07:00:00 | San Francisco, USA | 2026-05-02 07:45:00 | Singapore       |                     45
+ alice    | 2026-05-02 08:00:00 | New York, USA      | 2026-05-02 08:07:00 | Moscow, Russia  |                      7
+(2 rows)
+

@@ -1,0 +1,5 @@
+ username | total_attempts | failed_count | success_count |    first_attempt    |    last_attempt     
+----------+----------------+--------------+---------------+---------------------+---------------------
+ charlie  |              5 |            5 |             0 | 2026-05-01 11:00:00 | 2026-05-02 10:02:00
+(1 row)
+

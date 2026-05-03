@@ -1,0 +1,187 @@
+
+=============================================================
+SECURITY CONTROL VALIDATION REPORT
+Project 02 — SQL Security Control Validator
+=============================================================
+
+--- CONTROL 01: Failed Login Spike Detection ---
+Threshold: 2 or more failed attempts from same IP
+Framework: SOC2 CC6.1 | ISO 27001 A.9.4.2
+Severity:  HIGH
+
+ username | failed_attempts | ip_address  |    location     
+----------+-----------------+-------------+-----------------
+ alice    |               7 | 45.33.22.11 | Moscow, Russia
+ charlie  |               5 | 172.16.0.20 | Berlin, Germany
+(2 rows)
+
+
+--- CONTROL 02: Admin Account Activity Review ---
+Scope:     All accounts containing admin in username
+Framework: SOC2 CC6.2 | ISO 27001 A.9.2.3
+Severity:  CRITICAL
+
+ username |     login_time      |  ip_address   |      location      | login_status 
+----------+---------------------+---------------+--------------------+--------------
+ admin    | 2026-05-02 14:00:00 | 198.51.100.20 | Lagos, Nigeria     | success
+ admin    | 2026-05-02 07:45:00 | 203.0.113.50  | Singapore          | success
+ admin    | 2026-05-02 07:00:00 | 10.0.0.5      | San Francisco, USA | success
+ admin    | 2026-05-01 12:00:00 | 203.0.113.50  | Singapore          | success
+ admin    | 2026-05-01 10:00:00 | 10.0.0.5      | San Francisco, USA | success
+(5 rows)
+
+
+--- CONTROL 03: Impossible Travel Detection ---
+Threshold: Different locations within 2-hour window
+Framework: SOC2 CC7.2 | ISO 27001 A.12.4.1
+Severity:  CRITICAL
+
+ username |  first_login_time   |   first_location   |  second_login_time  | second_location | minutes_between_logins 
+----------+---------------------+--------------------+---------------------+-----------------+------------------------
+ admin    | 2026-05-02 07:00:00 | San Francisco, USA | 2026-05-02 07:45:00 | Singapore       |                     45
+ alice    | 2026-05-02 08:00:00 | New York, USA      | 2026-05-02 08:07:00 | Moscow, Russia  |                      7
+(2 rows)
+
+
+--- CONTROL 04: After-Hours Login Detection ---
+Window:    11pm to 6am
+Framework: SOC2 CC6.1 | ISO 27001 A.9.4.2
+Severity:  MEDIUM
+
+ username |     login_time      | ip_address |   location    | login_hour 
+----------+---------------------+------------+---------------+------------
+ diana    | 2026-05-02 02:15:00 | 10.0.0.99  | New York, USA |          2
+ diana    | 2026-05-02 03:30:00 | 10.0.0.99  | New York, USA |          3
+ diana    | 2026-05-02 23:45:00 | 10.0.0.99  | New York, USA |         23
+(3 rows)
+
+
+--- CONTROL 05: Accounts With Zero Successful Logins ---
+Threshold: 3 or more attempts with zero successes
+Framework: SOC2 CC6.1 | ISO 27001 A.9.2.5
+Severity:  HIGH
+
+ username | total_attempts | failed_count | success_count |    first_attempt    |    last_attempt     
+----------+----------------+--------------+---------------+---------------------+---------------------
+ charlie  |              5 |            5 |             0 | 2026-05-01 11:00:00 | 2026-05-02 10:02:00
+(1 row)
+
+
+--- CONTROL 06: Simultaneous Multi-Location Logins ---
+Threshold: Different IP and location within 1-hour window
+Framework: SOC2 CC6.6 | ISO 27001 A.9.4.2
+Severity:  CRITICAL
+
+ username |    login_time_1     |     location_1     |     ip_1     |    login_time_2     |   location_2   |     ip_2     | minutes_apart 
+----------+---------------------+--------------------+--------------+---------------------+----------------+--------------+---------------
+ admin    | 2026-05-02 07:00:00 | San Francisco, USA | 10.0.0.5     | 2026-05-02 07:45:00 | Singapore      | 203.0.113.50 |            45
+ alice    | 2026-05-02 08:00:00 | New York, USA      | 192.168.1.10 | 2026-05-02 08:07:00 | Moscow, Russia | 45.33.22.11  |             7
+(2 rows)
+
+
+--- CONTROL 07: User Risk Score Dashboard ---
+Scores:    Failed logins (max 30) + After hours (max 25) + Location change (max 40)
+Levels:    CRITICAL (50+) | HIGH (30-49) | MEDIUM (10-29) | LOW (0-9)
+Framework: SOC2 CC7.1, CC7.2 | ISO 27001 A.12.4.1
+
+ username | failed_login_score | after_hours_score | location_change_score | total_risk_score | risk_level 
+----------+--------------------+-------------------+-----------------------+------------------+------------
+ alice    |                 30 |                 0 |                    25 |               55 | CRITICAL
+ charlie  |                 30 |                 0 |                     0 |               30 | HIGH
+ admin    |                  0 |                 0 |                    25 |               25 | MEDIUM
+ diana    |                  0 |                25 |                     0 |               25 | MEDIUM
+ bob      |                  0 |                 0 |                     0 |                0 | LOW
+ eve      |                  0 |                 0 |                     0 |                0 | LOW
+(6 rows)
+
+
+=============================================================
+END OF SECURITY CONTROL VALIDATION REPORT
+=============================================================
+- =============================================================
+
+=============================================================
+SECURITY CONTROL VALIDATION REPORT
+Project 02 — SQL Security Control Validator
+=============================================================
+
+--- CONTROL 01: Failed Login Spike Detection ---
+Threshold: 2 or more failed attempts from same IP
+Framework: SOC2 CC6.1 | ISO 27001 A.9.4.2
+Severity:  HIGH
+
+ username | failed_attempts | ip_address  |    location     
+----------+-----------------+-------------+-----------------
+ alice    |               7 | 45.33.22.11 | Moscow, Russia
+ charlie  |               5 | 172.16.0.20 | Berlin, Germany
+(2 rows)
+
+
+--- CONTROL 02: Admin Account Activity Review ---
+Scope:     All accounts containing admin in username
+Framework: SOC2 CC6.2 | ISO 27001 A.9.2.3
+Severity:  CRITICAL
+
+ username |     login_time      |  ip_address   |      location      | login_status 
+----------+---------------------+---------------+--------------------+--------------
+ admin    | 2026-05-02 14:00:00 | 198.51.100.20 | Lagos, Nigeria     | success
+ admin    | 2026-05-02 07:45:00 | 203.0.113.50  | Singapore          | success
+ admin    | 2026-05-02 07:00:00 | 10.0.0.5      | San Francisco, USA | success
+ admin    | 2026-05-01 12:00:00 | 203.0.113.50  | Singapore          | success
+ admin    | 2026-05-01 10:00:00 | 10.0.0.5      | San Francisco, USA | success
+(5 rows)
+
+
+--- CONTROL 03: Impossible Travel Detection ---
+Threshold: Different locations within 2-hour window
+Framework: SOC2 CC7.2 | ISO 27001 A.12.4.1
+Severity:  CRITICAL
+
+ username |  first_login_time   |   first_location   |  second_login_time  | second_location | minutes_between_logins 
+----------+---------------------+--------------------+---------------------+-----------------+------------------------
+ admin    | 2026-05-02 07:00:00 | San Francisco, USA | 2026-05-02 07:45:00 | Singapore       |                     45
+ alice    | 2026-05-02 08:00:00 | New York, USA      | 2026-05-02 08:07:00 | Moscow, Russia  |                      7
+(2 rows)
+
+
+--- CONTROL 04: After-Hours Login Detection ---
+Window:    11pm to 6am
+Framework: SOC2 CC6.1 | ISO 27001 A.9.4.2
+Severity:  MEDIUM
+
+ username |     login_time      | ip_address |   location    | login_hour 
+----------+---------------------+------------+---------------+------------
+ diana    | 2026-05-02 02:15:00 | 10.0.0.99  | New York, USA |          2
+ diana    | 2026-05-02 03:30:00 | 10.0.0.99  | New York, USA |          3
+ diana    | 2026-05-02 23:45:00 | 10.0.0.99  | New York, USA |         23
+(3 rows)
+
+
+--- CONTROL 05: Accounts With Zero Successful Logins ---
+Threshold: 3 or more attempts with zero successes
+Framework: SOC2 CC6.1 | ISO 27001 A.9.2.5
+Severity:  HIGH
+
+ username | total_attempts | failed_count | success_count |    first_attempt    |    last_attempt     
+----------+----------------+--------------+---------------+---------------------+---------------------
+ charlie  |              5 |            5 |             0 | 2026-05-01 11:00:00 | 2026-05-02 10:02:00
+(1 row)
+
+
+--- CONTROL 06: Simultaneous Multi-Location Logins ---
+Threshold: Different IP and location within 1-hour window
+Framework: SOC2 CC6.6 | ISO 27001 A.9.4.2
+Severity:  CRITICAL
+
+ username |    login_time_1     |     location_1     |     ip_1     |    login_time_2     |   location_2   |     ip_2     | minutes_apart 
+----------+---------------------+--------------------+--------------+---------------------+----------------+--------------+---------------
+ admin    | 2026-05-02 07:00:00 | San Francisco, USA | 10.0.0.5     | 2026-05-02 07:45:00 | Singapore      | 203.0.113.50 |            45
+ alice    | 2026-05-02 08:00:00 | New York, USA      | 192.168.1.10 | 2026-05-02 08:07:00 | Moscow, Russia | 45.33.22.11  |             7
+(2 rows)
+
+
+--- CONTROL 07: User Risk Score Dashboard ---
+Scores:    Failed logins (max 30) + After hours (max 25) + Location change (max 40)
+Levels:    CRITICAL (50+) | HIGH (30-49) | MEDIUM (10-29) | LOW (0-9)
+Framework: SOC2 CC7.1, CC7.2 | ISO 27001 A.12.4.1
+

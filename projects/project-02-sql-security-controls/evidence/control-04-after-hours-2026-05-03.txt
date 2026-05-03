@@ -1,0 +1,7 @@
+ username |     login_time      | ip_address |   location    | login_hour 
+----------+---------------------+------------+---------------+------------
+ diana    | 2026-05-02 02:15:00 | 10.0.0.99  | New York, USA |          2
+ diana    | 2026-05-02 03:30:00 | 10.0.0.99  | New York, USA |          3
+ diana    | 2026-05-02 23:45:00 | 10.0.0.99  | New York, USA |         23
+(3 rows)
+

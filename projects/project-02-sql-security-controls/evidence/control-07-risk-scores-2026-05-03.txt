@@ -1,0 +1,10 @@
+ username | failed_login_score | after_hours_score | location_change_score | total_risk_score | risk_level 
+----------+--------------------+-------------------+-----------------------+------------------+------------
+ alice    |                 30 |                 0 |                    25 |               55 | CRITICAL
+ charlie  |                 30 |                 0 |                     0 |               30 | HIGH
+ admin    |                  0 |                 0 |                    25 |               25 | MEDIUM
+ diana    |                  0 |                25 |                     0 |               25 | MEDIUM
+ bob      |                  0 |                 0 |                     0 |                0 | LOW
+ eve      |                  0 |                 0 |                     0 |                0 | LOW
+(6 rows)
+
