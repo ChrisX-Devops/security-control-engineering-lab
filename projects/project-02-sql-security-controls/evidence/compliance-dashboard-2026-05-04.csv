@@ -1,0 +1,7 @@
+username,full_name,department,role_level,employment_status,mfa_status,last_access_review,review_status,total_login_events,failed_logins,successful_logins
+admin,System Administrator,IT Operations,admin,active,YES,,NEVER REVIEWED,5,0,5
+alice,Alice Chen,Engineering,engineer,active,YES,2025-12-01,OVERDUE,10,7,3
+bob,Bob Williams,Engineering,engineer,active,YES,2026-04-01,CURRENT,5,0,5
+charlie,Charlie Weber,Finance,analyst,terminated,NO,2026-01-15,OVERDUE,5,5,0
+diana,Diana Okafor,Marketing,viewer,active,YES,2026-03-15,CURRENT,3,0,3
+eve,Eve Martinez,Engineering,engineer,active,NO,2026-02-01,OVERDUE,2,0,2

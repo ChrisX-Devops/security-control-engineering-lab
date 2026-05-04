@@ -1,0 +1,7 @@
+ username |      full_name       |  department   | role_level | last_access_review | days_since_review |       review_status       
+----------+----------------------+---------------+------------+--------------------+-------------------+---------------------------
+ admin    | System Administrator | IT Operations | admin      |                    |                   | CRITICAL — NEVER REVIEWED
+ alice    | Alice Chen           | Engineering   | engineer   | 2025-12-01         |               154 | HIGH — OVERDUE
+ eve      | Eve Martinez         | Engineering   | engineer   | 2026-02-01         |                92 | HIGH — OVERDUE
+(3 rows)
+

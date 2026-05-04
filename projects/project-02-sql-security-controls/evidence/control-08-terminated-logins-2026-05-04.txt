@@ -1,0 +1,9 @@
+ username |   full_name   | department | employment_status | termination_date |     login_time      | ip_address  |    location     | login_status |      finding_type      
+----------+---------------+------------+-------------------+------------------+---------------------+-------------+-----------------+--------------+------------------------
+ charlie  | Charlie Weber | Finance    | terminated        | 2026-04-15       | 2026-05-01 11:00:00 | 172.16.0.20 | Berlin, Germany | failed       | POST-TERMINATION LOGIN
+ charlie  | Charlie Weber | Finance    | terminated        | 2026-04-15       | 2026-05-01 11:01:00 | 172.16.0.20 | Berlin, Germany | failed       | POST-TERMINATION LOGIN
+ charlie  | Charlie Weber | Finance    | terminated        | 2026-04-15       | 2026-05-02 10:00:00 | 172.16.0.20 | Berlin, Germany | failed       | POST-TERMINATION LOGIN
+ charlie  | Charlie Weber | Finance    | terminated        | 2026-04-15       | 2026-05-02 10:01:00 | 172.16.0.20 | Berlin, Germany | failed       | POST-TERMINATION LOGIN
+ charlie  | Charlie Weber | Finance    | terminated        | 2026-04-15       | 2026-05-02 10:02:00 | 172.16.0.20 | Berlin, Germany | failed       | POST-TERMINATION LOGIN
+(5 rows)
+

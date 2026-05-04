@@ -1,0 +1,5 @@
+ username |  full_name   | department  | role_level | employment_status | mfa_enrolled | finding_severity | total_login_events 
+----------+--------------+-------------+------------+-------------------+--------------+------------------+--------------------
+ eve      | Eve Martinez | Engineering | engineer   | active            | f            | CRITICAL         |                  2
+(1 row)
+
