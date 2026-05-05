@@ -3,3 +3,4 @@ __pycache__/
 *.pyo
 .env
 venv/
+projects/project-03-aws-cloud-validator/state/
