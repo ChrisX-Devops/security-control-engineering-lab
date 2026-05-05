@@ -1,0 +1,158 @@
+{
+  "metadata": {
+    "generated_at": "2026-05-05 12:10:13",
+    "report_date": "2026-05-05",
+    "system": "PaySecure Unified Compliance Dashboard",
+    "version": "1.0"
+  },
+  "compliance_score": {
+    "overall_score": 0,
+    "grade": "F",
+    "status": "CRITICAL",
+    "total_findings": 10,
+    "counts": {
+      "CRITICAL": 4,
+      "HIGH": 4,
+      "MEDIUM": 1,
+      "LOW": 1
+    },
+    "deductions": {
+      "HIGH": 40,
+      "CRITICAL": 80,
+      "MEDIUM": 5,
+      "LOW": 2
+    },
+    "category_scores": {
+      "access_control": {
+        "score": 15,
+        "findings": 7
+      },
+      "identity": {
+        "score": 58,
+        "findings": 3
+      }
+    }
+  },
+  "findings": [
+    {
+      "finding_id": "SQL-TERM-charlie",
+      "source": "project-02-sql-controls",
+      "control_id": "CTL-08",
+      "title": "Terminated Employee Login Activity",
+      "severity": "CRITICAL",
+      "status": "FAIL",
+      "resource": "user/charlie",
+      "description": "Terminated employee 'Charlie Weber' has 5 login events after termination date 2026-04-15",
+      "framework": "SOC2 CC6.2, CC6.3",
+      "category": "access_control"
+    },
+    {
+      "finding_id": "SQL-MFA-eve",
+      "source": "project-02-sql-controls",
+      "control_id": "CTL-09",
+      "title": "Active User Without MFA",
+      "severity": "CRITICAL",
+      "status": "FAIL",
+      "resource": "user/eve",
+      "description": "User 'Eve Martinez' (engineer) is active but has no MFA device enrolled",
+      "framework": "SOC2 CC6.1",
+      "category": "identity"
+    },
+    {
+      "finding_id": "SQL-REV-admin",
+      "source": "project-02-sql-controls",
+      "control_id": "CTL-10",
+      "title": "Access Review Overdue",
+      "severity": "CRITICAL",
+      "status": "FAIL",
+      "resource": "user/admin",
+      "description": "User 'System Administrator' access review is overdue. Days since last review: Never reviewed",
+      "framework": "SOC2 CC6.2, CC6.3",
+      "category": "access_control"
+    },
+    {
+      "finding_id": "AWS-AWS-IAM-001-iam-user-audit-test-user",
+      "source": "project-03-aws-validator",
+      "control_id": "AWS-IAM-001",
+      "title": "MFA Not Enabled",
+      "severity": "CRITICAL",
+      "status": "FAIL",
+      "resource": "iam/user/audit-test-user",
+      "description": "User 'audit-test-user' does not have MFA enabled. If this account's password is compromised, an attacker has unrestricted access.",
+      "framework": "SOC2 CC6.1 | ISO A.9.4.2",
+      "category": "identity"
+    },
+    {
+      "finding_id": "SQL-BF-alice",
+      "source": "project-02-sql-controls",
+      "control_id": "CTL-01",
+      "title": "Brute Force Login Detected",
+      "severity": "HIGH",
+      "status": "FAIL",
+      "resource": "user/alice from 45.33.22.11",
+      "description": "User 'alice' had 7 failed login attempts from 45.33.22.11 (Moscow, Russia)",
+      "framework": "SOC2 CC6.1, CC7.2",
+      "category": "access_control"
+    },
+    {
+      "finding_id": "SQL-BF-charlie",
+      "source": "project-02-sql-controls",
+      "control_id": "CTL-01",
+      "title": "Brute Force Login Detected",
+      "severity": "HIGH",
+      "status": "FAIL",
+      "resource": "user/charlie from 172.16.0.20",
+      "description": "User 'charlie' had 5 failed login attempts from 172.16.0.20 (Berlin, Germany)",
+      "framework": "SOC2 CC6.1, CC7.2",
+      "category": "access_control"
+    },
+    {
+      "finding_id": "SQL-REV-alice",
+      "source": "project-02-sql-controls",
+      "control_id": "CTL-10",
+      "title": "Access Review Overdue",
+      "severity": "HIGH",
+      "status": "FAIL",
+      "resource": "user/alice",
+      "description": "User 'Alice Chen' access review is overdue. Days since last review: 155",
+      "framework": "SOC2 CC6.2, CC6.3",
+      "category": "access_control"
+    },
+    {
+      "finding_id": "SQL-REV-eve",
+      "source": "project-02-sql-controls",
+      "control_id": "CTL-10",
+      "title": "Access Review Overdue",
+      "severity": "HIGH",
+      "status": "FAIL",
+      "resource": "user/eve",
+      "description": "User 'Eve Martinez' access review is overdue. Days since last review: 93",
+      "framework": "SOC2 CC6.2, CC6.3",
+      "category": "access_control"
+    },
+    {
+      "finding_id": "SQL-AH-diana",
+      "source": "project-02-sql-controls",
+      "control_id": "CTL-04",
+      "title": "Repeated After-Hours Login Activity",
+      "severity": "MEDIUM",
+      "status": "FAIL",
+      "resource": "user/diana",
+      "description": "User 'diana' has 3 successful logins between 11pm and 6am",
+      "framework": "SOC2 CC6.1",
+      "category": "access_control"
+    },
+    {
+      "finding_id": "AWS-AWS-IAM-005-iam-user-audit-test-user",
+      "source": "project-03-aws-validator",
+      "control_id": "AWS-IAM-005",
+      "title": "User Not In Any Group",
+      "severity": "LOW",
+      "status": "FAIL",
+      "resource": "iam/user/audit-test-user",
+      "description": "User 'audit-test-user' is not a member of any IAM group. Best practice is to assign permissions via groups, not directly to users.",
+      "framework": "SOC2 CC6.3 | ISO A.9.2.1",
+      "category": "identity"
+    }
+  ]
+}
