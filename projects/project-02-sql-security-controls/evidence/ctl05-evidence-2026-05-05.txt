@@ -1,0 +1,12 @@
+======================================================================
+CONTROL: CTL-05 - Zero Success Accounts
+Severity:    HIGH
+Framework:   SOC2 CC6.1 | ISO A.9.2.5
+Description: Finds accounts with 3+ failed logins and zero successes
+Run Date:    2026-05-05 03:58:59
+======================================================================
+RESULT: 1 FINDING(S) DETECTED
+
+USERNAME  TOTAL_ATTEMPTS  FAILED_COUNT  SUCCESS_COUNT  FIRST_ATTEMPT  LAST_ATTEMPT
+----------------------------------------------------------------------
+charlie  5  5  0  2026-05-01 11:00:00  2026-05-02 10:02:00

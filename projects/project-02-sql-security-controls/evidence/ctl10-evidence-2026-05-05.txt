@@ -1,0 +1,14 @@
+======================================================================
+CONTROL: CTL-10 - Access Review Overdue
+Severity:    HIGH
+Framework:   SOC2 CC6.2, CC6.3 | ISO A.9.2.5
+Description: Finds active users whose access review is overdue
+Run Date:    2026-05-05 03:58:59
+======================================================================
+RESULT: 3 FINDING(S) DETECTED
+
+USERNAME  FULL_NAME  DEPARTMENT  ROLE_LEVEL  LAST_ACCESS_REVIEW  DAYS_SINCE_REVIEW  REVIEW_STATUS
+----------------------------------------------------------------------
+admin  System Administrator  IT Operations  admin  None  None  CRITICAL - NEVER REVIEWED
+alice  Alice Chen  Engineering  engineer  2025-12-01  155  HIGH - OVERDUE
+eve  Eve Martinez  Engineering  engineer  2026-02-01  93  HIGH - OVERDUE

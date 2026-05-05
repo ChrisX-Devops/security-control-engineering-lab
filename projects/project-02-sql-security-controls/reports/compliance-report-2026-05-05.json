@@ -1,0 +1,127 @@
+{
+  "report_metadata": {
+    "generated_at": "2026-05-05 03:58:59",
+    "report_date": "2026-05-05",
+    "system": "PaySecure Security Control Validator",
+    "report_version": "1.0"
+  },
+  "compliance_score": {
+    "overall_score": 0.0,
+    "total_controls": 12,
+    "scored_controls": 10,
+    "passing_controls": 0,
+    "failing_controls": 10,
+    "error_controls": 0,
+    "critical_findings": 5
+  },
+  "controls": [
+    {
+      "control_id": "CTL-01",
+      "name": "Failed Login Spike Detection",
+      "severity": "HIGH",
+      "framework": "SOC2 CC6.1, CC7.2 | ISO A.9.4.2",
+      "status": "FINDINGS",
+      "finding_count": 2,
+      "evidence_file": "/home/ipup/security-control-engineering-lab/projects/project-02-sql-security-controls/evidence/ctl01-evidence-2026-05-05.txt"
+    },
+    {
+      "control_id": "CTL-02",
+      "name": "Admin Account Activity Review",
+      "severity": "CRITICAL",
+      "framework": "SOC2 CC6.2, CC6.3 | ISO A.9.2.3",
+      "status": "FINDINGS",
+      "finding_count": 5,
+      "evidence_file": "/home/ipup/security-control-engineering-lab/projects/project-02-sql-security-controls/evidence/ctl02-evidence-2026-05-05.txt"
+    },
+    {
+      "control_id": "CTL-03",
+      "name": "Impossible Travel Detection",
+      "severity": "CRITICAL",
+      "framework": "SOC2 CC7.2, CC6.6 | ISO A.12.4.1",
+      "status": "FINDINGS",
+      "finding_count": 2,
+      "evidence_file": "/home/ipup/security-control-engineering-lab/projects/project-02-sql-security-controls/evidence/ctl03-evidence-2026-05-05.txt"
+    },
+    {
+      "control_id": "CTL-04",
+      "name": "After-Hours Login Detection",
+      "severity": "MEDIUM",
+      "framework": "SOC2 CC6.1 | ISO A.9.4.2",
+      "status": "FINDINGS",
+      "finding_count": 3,
+      "evidence_file": "/home/ipup/security-control-engineering-lab/projects/project-02-sql-security-controls/evidence/ctl04-evidence-2026-05-05.txt"
+    },
+    {
+      "control_id": "CTL-05",
+      "name": "Zero Success Accounts",
+      "severity": "HIGH",
+      "framework": "SOC2 CC6.1 | ISO A.9.2.5",
+      "status": "FINDINGS",
+      "finding_count": 1,
+      "evidence_file": "/home/ipup/security-control-engineering-lab/projects/project-02-sql-security-controls/evidence/ctl05-evidence-2026-05-05.txt"
+    },
+    {
+      "control_id": "CTL-06",
+      "name": "Simultaneous Multi-Location Logins",
+      "severity": "CRITICAL",
+      "framework": "SOC2 CC6.6 | ISO A.9.4.2",
+      "status": "FINDINGS",
+      "finding_count": 2,
+      "evidence_file": "/home/ipup/security-control-engineering-lab/projects/project-02-sql-security-controls/evidence/ctl06-evidence-2026-05-05.txt"
+    },
+    {
+      "control_id": "CTL-07",
+      "name": "User Risk Score Dashboard",
+      "severity": "INFO",
+      "framework": "SOC2 CC7.1, CC7.2 | ISO A.12.4.1",
+      "status": "FINDINGS",
+      "finding_count": 6,
+      "evidence_file": "/home/ipup/security-control-engineering-lab/projects/project-02-sql-security-controls/evidence/ctl07-evidence-2026-05-05.txt"
+    },
+    {
+      "control_id": "CTL-08",
+      "name": "Terminated Employee Login Detection",
+      "severity": "CRITICAL",
+      "framework": "SOC2 CC6.2, CC6.3 | ISO A.9.2.6",
+      "status": "FINDINGS",
+      "finding_count": 5,
+      "evidence_file": "/home/ipup/security-control-engineering-lab/projects/project-02-sql-security-controls/evidence/ctl08-evidence-2026-05-05.txt"
+    },
+    {
+      "control_id": "CTL-09",
+      "name": "MFA Enrollment Compliance",
+      "severity": "CRITICAL",
+      "framework": "SOC2 CC6.1 | ISO A.9.4.2",
+      "status": "FINDINGS",
+      "finding_count": 1,
+      "evidence_file": "/home/ipup/security-control-engineering-lab/projects/project-02-sql-security-controls/evidence/ctl09-evidence-2026-05-05.txt"
+    },
+    {
+      "control_id": "CTL-10",
+      "name": "Access Review Overdue",
+      "severity": "HIGH",
+      "framework": "SOC2 CC6.2, CC6.3 | ISO A.9.2.5",
+      "status": "FINDINGS",
+      "finding_count": 3,
+      "evidence_file": "/home/ipup/security-control-engineering-lab/projects/project-02-sql-security-controls/evidence/ctl10-evidence-2026-05-05.txt"
+    },
+    {
+      "control_id": "CTL-11",
+      "name": "Role-Based Access Violation",
+      "severity": "HIGH",
+      "framework": "SOC2 CC6.3 | ISO A.9.2.3",
+      "status": "FINDINGS",
+      "finding_count": 6,
+      "evidence_file": "/home/ipup/security-control-engineering-lab/projects/project-02-sql-security-controls/evidence/ctl11-evidence-2026-05-05.txt"
+    },
+    {
+      "control_id": "CTL-12",
+      "name": "Full User Compliance Dashboard",
+      "severity": "INFO",
+      "framework": "SOC2 CC6.1, CC6.2, CC6.3 | ISO A.9.2.1-A.9.2.6",
+      "status": "FINDINGS",
+      "finding_count": 6,
+      "evidence_file": "/home/ipup/security-control-engineering-lab/projects/project-02-sql-security-controls/evidence/ctl12-evidence-2026-05-05.txt"
+    }
+  ]
+}

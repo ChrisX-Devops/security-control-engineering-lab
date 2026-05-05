@@ -1,0 +1,16 @@
+======================================================================
+CONTROL: CTL-02 - Admin Account Activity Review
+Severity:    CRITICAL
+Framework:   SOC2 CC6.2, CC6.3 | ISO A.9.2.3
+Description: Shows all login events for admin accounts
+Run Date:    2026-05-05 03:58:59
+======================================================================
+RESULT: 5 FINDING(S) DETECTED
+
+USERNAME  LOGIN_TIME  IP_ADDRESS  LOCATION  LOGIN_STATUS
+----------------------------------------------------------------------
+admin  2026-05-02 14:00:00  198.51.100.20  Lagos, Nigeria  success
+admin  2026-05-02 07:45:00  203.0.113.50  Singapore  success
+admin  2026-05-02 07:00:00  10.0.0.5  San Francisco, USA  success
+admin  2026-05-01 12:00:00  203.0.113.50  Singapore  success
+admin  2026-05-01 10:00:00  10.0.0.5  San Francisco, USA  success

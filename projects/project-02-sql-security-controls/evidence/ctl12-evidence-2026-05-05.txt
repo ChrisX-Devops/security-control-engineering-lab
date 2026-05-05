@@ -1,0 +1,17 @@
+======================================================================
+CONTROL: CTL-12 - Full User Compliance Dashboard
+Severity:    INFO
+Framework:   SOC2 CC6.1, CC6.2, CC6.3 | ISO A.9.2.1-A.9.2.6
+Description: Complete compliance posture for all users
+Run Date:    2026-05-05 03:58:59
+======================================================================
+RESULT: 6 FINDING(S) DETECTED
+
+USERNAME  FULL_NAME  DEPARTMENT  ROLE_LEVEL  EMPLOYMENT_STATUS  MFA_STATUS  LAST_ACCESS_REVIEW  REVIEW_STATUS  TOTAL_LOGIN_EVENTS  FAILED_LOGINS  SUCCESSFUL_LOGINS  COMPLIANCE_STATUS
+----------------------------------------------------------------------
+charlie  Charlie Weber  Finance  analyst  terminated  NO  2026-01-15  OVERDUE  5  5  0  CRITICAL
+eve  Eve Martinez  Engineering  engineer  active  NO  2026-02-01  OVERDUE  2  0  2  HIGH
+admin  System Administrator  IT Operations  admin  active  YES  None  NEVER REVIEWED  5  0  5  HIGH
+diana  Diana Okafor  Marketing  viewer  active  YES  2026-03-15  CURRENT  3  0  3  COMPLIANT
+bob  Bob Williams  Engineering  engineer  active  YES  2026-04-01  CURRENT  5  0  5  COMPLIANT
+alice  Alice Chen  Engineering  engineer  active  YES  2025-12-01  OVERDUE  10  7  3  MEDIUM

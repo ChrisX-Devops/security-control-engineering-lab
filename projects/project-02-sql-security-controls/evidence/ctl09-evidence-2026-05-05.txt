@@ -1,0 +1,12 @@
+======================================================================
+CONTROL: CTL-09 - MFA Enrollment Compliance
+Severity:    CRITICAL
+Framework:   SOC2 CC6.1 | ISO A.9.4.2
+Description: Finds active users without MFA enrolled
+Run Date:    2026-05-05 03:58:59
+======================================================================
+RESULT: 1 FINDING(S) DETECTED
+
+USERNAME  FULL_NAME  DEPARTMENT  ROLE_LEVEL  MFA_ENROLLED  FINDING_SEVERITY  TOTAL_LOGIN_EVENTS
+----------------------------------------------------------------------
+eve  Eve Martinez  Engineering  engineer  False  CRITICAL  2

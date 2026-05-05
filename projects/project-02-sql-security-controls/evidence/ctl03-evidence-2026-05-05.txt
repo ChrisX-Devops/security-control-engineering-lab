@@ -1,0 +1,13 @@
+======================================================================
+CONTROL: CTL-03 - Impossible Travel Detection
+Severity:    CRITICAL
+Framework:   SOC2 CC7.2, CC6.6 | ISO A.12.4.1
+Description: Detects successful logins from different locations within 2 hours
+Run Date:    2026-05-05 03:58:59
+======================================================================
+RESULT: 2 FINDING(S) DETECTED
+
+USERNAME  FIRST_LOGIN_TIME  FIRST_LOCATION  SECOND_LOGIN_TIME  SECOND_LOCATION  MINUTES_BETWEEN_LOGINS
+----------------------------------------------------------------------
+admin  2026-05-02 07:00:00  San Francisco, USA  2026-05-02 07:45:00  Singapore  45
+alice  2026-05-02 08:00:00  New York, USA  2026-05-02 08:07:00  Moscow, Russia  7

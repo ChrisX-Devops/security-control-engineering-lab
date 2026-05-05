@@ -1,0 +1,17 @@
+======================================================================
+CONTROL: CTL-07 - User Risk Score Dashboard
+Severity:    INFO
+Framework:   SOC2 CC7.1, CC7.2 | ISO A.12.4.1
+Description: Aggregates all risk signals into a score per user
+Run Date:    2026-05-05 03:58:59
+======================================================================
+RESULT: 6 FINDING(S) DETECTED
+
+USERNAME  FAILED_LOGIN_SCORE  AFTER_HOURS_SCORE  LOCATION_CHANGE_SCORE  TOTAL_RISK_SCORE  RISK_LEVEL
+----------------------------------------------------------------------
+alice  30  0  25  55  CRITICAL
+charlie  30  0  0  30  HIGH
+admin  0  0  25  25  MEDIUM
+diana  0  25  0  25  MEDIUM
+bob  0  0  0  0  LOW
+eve  0  0  0  0  LOW

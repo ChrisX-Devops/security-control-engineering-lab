@@ -1,0 +1,13 @@
+======================================================================
+CONTROL: CTL-01 - Failed Login Spike Detection
+Severity:    HIGH
+Framework:   SOC2 CC6.1, CC7.2 | ISO A.9.4.2
+Description: Detects users with 2+ failed logins from same IP
+Run Date:    2026-05-05 03:58:59
+======================================================================
+RESULT: 2 FINDING(S) DETECTED
+
+USERNAME  FAILED_ATTEMPTS  IP_ADDRESS  LOCATION
+----------------------------------------------------------------------
+alice  7  45.33.22.11  Moscow, Russia
+charlie  5  172.16.0.20  Berlin, Germany

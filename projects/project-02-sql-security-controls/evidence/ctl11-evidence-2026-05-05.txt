@@ -1,0 +1,17 @@
+======================================================================
+CONTROL: CTL-11 - Role-Based Access Violation
+Severity:    HIGH
+Framework:   SOC2 CC6.3 | ISO A.9.2.3
+Description: Cross-references user role with login behavior
+Run Date:    2026-05-05 03:58:59
+======================================================================
+RESULT: 6 FINDING(S) DETECTED
+
+USERNAME  FULL_NAME  DEPARTMENT  ROLE_LEVEL  EMPLOYMENT_STATUS  TOTAL_LOGINS  FAILED_LOGINS  UNIQUE_LOCATIONS  RISK_ASSESSMENT
+----------------------------------------------------------------------
+alice  Alice Chen  Engineering  engineer  active  10  7  2  MEDIUM - MORE FAILURES THAN SUCCESSES
+admin  System Administrator  IT Operations  admin  active  5  0  3  HIGH - ACCESS FROM MULTIPLE COUNTRIES
+bob  Bob Williams  Engineering  engineer  active  5  0  1  LOW
+charlie  Charlie Weber  Finance  analyst  terminated  5  5  1  CRITICAL - TERMINATED USER HAS LOGIN ACTIVITY
+diana  Diana Okafor  Marketing  viewer  active  3  0  1  HIGH - VIEWER WITH AFTER-HOURS ACCESS
+eve  Eve Martinez  Engineering  engineer  active  2  0  2  LOW

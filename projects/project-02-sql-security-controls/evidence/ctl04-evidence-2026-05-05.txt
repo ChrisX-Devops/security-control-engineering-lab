@@ -1,0 +1,14 @@
+======================================================================
+CONTROL: CTL-04 - After-Hours Login Detection
+Severity:    MEDIUM
+Framework:   SOC2 CC6.1 | ISO A.9.4.2
+Description: Flags successful logins between 11pm and 6am
+Run Date:    2026-05-05 03:58:59
+======================================================================
+RESULT: 3 FINDING(S) DETECTED
+
+USERNAME  LOGIN_TIME  IP_ADDRESS  LOCATION  LOGIN_HOUR
+----------------------------------------------------------------------
+diana  2026-05-02 02:15:00  10.0.0.99  New York, USA  2
+diana  2026-05-02 03:30:00  10.0.0.99  New York, USA  3
+diana  2026-05-02 23:45:00  10.0.0.99  New York, USA  23
