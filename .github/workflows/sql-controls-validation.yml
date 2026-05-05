@@ -1,0 +1,238 @@
+# =============================================================
+# SQL CONTROLS VALIDATION PIPELINE
+# =============================================================
+# Purpose:
+#   Validates that all SQL control query files exist and
+#   are syntactically correct. Runs the Python pipeline
+#   structure validation.
+#
+# Triggers:
+#   - Every push to master branch
+#   - Every pull request to master branch
+#   - Manual trigger
+#
+# Why this matters:
+#   Ensures no SQL files are accidentally deleted or broken.
+#   Catches Python import errors before they reach production.
+# =============================================================
+
+name: SQL Controls Validation
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - 'projects/project-02-sql-security-controls/**'
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+
+  validate-sql-files:
+    name: Validate SQL Control Files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify all 12 control files exist
+        run: |
+          echo "Checking SQL control files..."
+
+          CONTROLS=(
+            "control-01-failed-login-spike.sql"
+            "control-02-admin-activity-review.sql"
+            "control-03-impossible-travel.sql"
+            "control-04-after-hours-logins.sql"
+            "control-05-zero-success-accounts.sql"
+            "control-06-simultaneous-locations.sql"
+            "control-07-user-risk-score.sql"
+            "control-08-terminated-employee-logins.sql"
+            "control-09-mfa-compliance.sql"
+            "control-10-access-review-overdue.sql"
+            "control-11-role-access-violation.sql"
+            "control-12-user-compliance-dashboard.sql"
+          )
+
+          MISSING=0
+          for control in "${CONTROLS[@]}"; do
+            FILE="projects/project-02-sql-security-controls/queries/$control"
+            if [ -f "$FILE" ]; then
+              echo "  [OK] $control"
+            else
+              echo "  [MISSING] $control"
+              MISSING=$((MISSING + 1))
+            fi
+          done
+
+          if [ $MISSING -gt 0 ]; then
+            echo ""
+            echo "ERROR: $MISSING control file(s) missing"
+            exit 1
+          fi
+
+          echo ""
+          echo "All 12 control files present"
+
+      - name: Verify schema files exist
+        run: |
+          echo "Checking schema files..."
+
+          SCHEMAS=(
+            "projects/project-02-sql-security-controls/schema/create_tables.sql"
+            "projects/project-02-sql-security-controls/schema/create_users_table.sql"
+          )
+
+          for schema in "${SCHEMAS[@]}"; do
+            if [ -f "$schema" ]; then
+              echo "  [OK] $schema"
+            else
+              echo "  [MISSING] $schema"
+              exit 1
+            fi
+          done
+
+      - name: Verify data files exist
+        run: |
+          echo "Checking seed data files..."
+
+          DATA=(
+            "projects/project-02-sql-security-controls/data/seed_data.sql"
+            "projects/project-02-sql-security-controls/data/seed_data_day10.sql"
+            "projects/project-02-sql-security-controls/data/seed_users.sql"
+          )
+
+          for data in "${DATA[@]}"; do
+            if [ -f "$data" ]; then
+              echo "  [OK] $data"
+            else
+              echo "  [MISSING] $data"
+              exit 1
+            fi
+          done
+
+      - name: Verify run-all-controls.sql exists
+        run: |
+          if [ -f "projects/project-02-sql-security-controls/run-all-controls.sql" ]; then
+            echo "[OK] run-all-controls.sql exists"
+          else
+            echo "[MISSING] run-all-controls.sql"
+            exit 1
+          fi
+
+      - name: Check SQL files are not empty
+        run: |
+          echo "Checking SQL files are not empty..."
+          EMPTY=0
+
+          for file in projects/project-02-sql-security-controls/queries/*.sql; do
+            SIZE=$(wc -c < "$file")
+            if [ "$SIZE" -lt 50 ]; then
+              echo "  [WARN] Possibly empty: $file ($SIZE bytes)"
+              EMPTY=$((EMPTY + 1))
+            else
+              echo "  [OK] $file ($SIZE bytes)"
+            fi
+          done
+
+          echo ""
+          echo "Empty file check complete"
+
+  validate-python-pipeline:
+    name: Validate Python Automation Pipeline
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Verify Python automation files exist
+        run: |
+          echo "Checking Python automation files..."
+
+          FILES=(
+            "projects/project-02-sql-security-controls/automation/db_connect.py"
+            "projects/project-02-sql-security-controls/automation/controls.py"
+            "projects/project-02-sql-security-controls/automation/collect_evidence.py"
+            "projects/project-02-sql-security-controls/automation/generate_report.py"
+            "projects/project-02-sql-security-controls/automation/run_pipeline.py"
+          )
+
+          for file in "${FILES[@]}"; do
+            if [ -f "$file" ]; then
+              echo "  [OK] $file"
+            else
+              echo "  [MISSING] $file"
+              exit 1
+            fi
+          done
+
+      - name: Check Python syntax on all automation files
+        run: |
+          echo "Checking Python syntax..."
+
+          for file in projects/project-02-sql-security-controls/automation/*.py; do
+            python3 -m py_compile "$file"
+            echo "  [OK] $file syntax valid"
+          done
+
+      - name: Verify controls.py defines all 12 controls
+        run: |
+          python3 - << 'EOF'
+          import sys
+          sys.path.insert(0, 'projects/project-02-sql-security-controls/automation')
+          from controls import CONTROLS
+
+          expected_ids = [f"CTL-{str(i).zfill(2)}" for i in range(1, 13)]
+          actual_ids = [c["id"] for c in CONTROLS]
+
+          missing = [i for i in expected_ids if i not in actual_ids]
+
+          if missing:
+              print(f"MISSING CONTROLS: {missing}")
+              sys.exit(1)
+
+          print(f"All 12 controls defined: {actual_ids}")
+
+          required_fields = ["id", "name", "severity", "framework",
+                             "description", "sql"]
+          for control in CONTROLS:
+              for field in required_fields:
+                  if field not in control:
+                      print(f"MISSING FIELD '{field}' in {control['id']}")
+                      sys.exit(1)
+
+          print("All controls have required fields")
+          EOF
+
+      - name: Verify valid severity values
+        run: |
+          python3 - << 'EOF'
+          import sys
+          sys.path.insert(0, 'projects/project-02-sql-security-controls/automation')
+          from controls import CONTROLS
+
+          valid_severities = {"CRITICAL", "HIGH", "MEDIUM", "LOW", "INFO"}
+          errors = []
+
+          for control in CONTROLS:
+              if control["severity"] not in valid_severities:
+                  errors.append(
+                      f"{control['id']} has invalid severity: "
+                      f"{control['severity']}"
+                  )
+
+          if errors:
+              for e in errors:
+                  print(f"ERROR: {e}")
+              sys.exit(1)
+
+          print("All controls have valid severity values")
+          EOF

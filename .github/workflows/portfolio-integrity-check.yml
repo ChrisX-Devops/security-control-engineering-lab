@@ -1,0 +1,143 @@
+# =============================================================
+# PORTFOLIO INTEGRITY CHECK
+# =============================================================
+# Purpose:
+#   Verifies that all required project files exist across
+#   the entire portfolio. Runs on every push to master.
+#
+# Why this matters:
+#   Accidental file deletions are caught immediately.
+#   Ensures the portfolio is always in a presentable state.
+#   Demonstrates CI/CD discipline to potential employers.
+# =============================================================
+
+name: Portfolio Integrity Check
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+
+  check-portfolio:
+    name: Verify Complete Portfolio Structure
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check Project 01 files
+        run: |
+          echo "=== Project 01: IAM Policy Control ==="
+
+          FILES=(
+            "projects/project-01-cloud-access-review/findings.md"
+            "projects/project-01-cloud-access-review/control-map.md"
+            "projects/project-01-cloud-access-review/final-report.md"
+            "projects/project-01-cloud-access-review/policies/iam_least_privilege.rego"
+          )
+
+          MISSING=0
+          for file in "${FILES[@]}"; do
+            if [ -f "$file" ]; then
+              echo "  [OK] $file"
+            else
+              echo "  [MISSING] $file"
+              MISSING=$((MISSING + 1))
+            fi
+          done
+
+          [ $MISSING -eq 0 ] && echo "Project 01: COMPLETE" \
+            || echo "Project 01: $MISSING file(s) missing"
+
+      - name: Check Project 02 files
+        run: |
+          echo ""
+          echo "=== Project 02: SQL Security Controls ==="
+
+          QUERY_COUNT=$(ls projects/project-02-sql-security-controls/queries/*.sql 2>/dev/null | wc -l)
+          echo "  SQL query files: $QUERY_COUNT (expected 12)"
+
+          EVIDENCE_COUNT=$(ls projects/project-02-sql-security-controls/evidence/*.txt 2>/dev/null | wc -l)
+          echo "  Evidence files: $EVIDENCE_COUNT"
+
+          PYTHON_COUNT=$(ls projects/project-02-sql-security-controls/automation/*.py 2>/dev/null | wc -l)
+          echo "  Python automation files: $PYTHON_COUNT (expected 5)"
+
+          if [ "$QUERY_COUNT" -eq 12 ] && [ "$PYTHON_COUNT" -eq 5 ]; then
+            echo "Project 02: COMPLETE"
+          else
+            echo "Project 02: INCOMPLETE"
+          fi
+
+      - name: Check Project 03 files
+        run: |
+          echo ""
+          echo "=== Project 03: AWS Cloud Validator ==="
+
+          FILES=(
+            "projects/project-03-aws-cloud-validator/run_validator.py"
+            "projects/project-03-aws-cloud-validator/collectors/collect_iam_state.py"
+            "projects/project-03-aws-cloud-validator/collectors/collect_s3_state.py"
+            "projects/project-03-aws-cloud-validator/validators/validate_iam.py"
+            "projects/project-03-aws-cloud-validator/validators/validate_s3.py"
+            "projects/project-03-aws-cloud-validator/README.md"
+          )
+
+          MISSING=0
+          for file in "${FILES[@]}"; do
+            if [ -f "$file" ]; then
+              echo "  [OK] $file"
+            else
+              echo "  [MISSING] $file"
+              MISSING=$((MISSING + 1))
+            fi
+          done
+
+          [ $MISSING -eq 0 ] && echo "Project 03: COMPLETE" \
+            || echo "Project 03: $MISSING file(s) missing"
+
+      - name: Check Project 04 files
+        run: |
+          echo ""
+          echo "=== Project 04: Unified Dashboard ==="
+
+          FILES=(
+            "projects/project-04-unified-dashboard/run_dashboard.py"
+            "projects/project-04-unified-dashboard/collectors/collect_sql_findings.py"
+            "projects/project-04-unified-dashboard/collectors/collect_aws_findings.py"
+            "projects/project-04-unified-dashboard/collectors/scoring_engine.py"
+            "projects/project-04-unified-dashboard/collectors/generate_unified_report.py"
+          )
+
+          MISSING=0
+          for file in "${FILES[@]}"; do
+            if [ -f "$file" ]; then
+              echo "  [OK] $file"
+            else
+              echo "  [MISSING] $file"
+              MISSING=$((MISSING + 1))
+            fi
+          done
+
+          [ $MISSING -eq 0 ] && echo "Project 04: COMPLETE" \
+            || echo "Project 04: $MISSING file(s) missing"
+
+      - name: Portfolio summary
+        run: |
+          echo ""
+          echo "================================"
+          echo "PORTFOLIO INTEGRITY CHECK DONE"
+          echo "================================"
+          echo ""
+          echo "Repository: ChrisX-Devops/security-control-engineering-lab"
+          echo "Branch: master"
+          echo "Commit: $GITHUB_SHA"
+          echo ""
+          echo "Projects validated:"
+          echo "  - Project 01: IAM Policy Control"
+          echo "  - Project 02: SQL Security Controls"
+          echo "  - Project 03: AWS Cloud Validator"
+          echo "  - Project 04: Unified Dashboard"

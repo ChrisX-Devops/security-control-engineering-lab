@@ -1,0 +1,154 @@
+# =============================================================
+# AWS VALIDATOR STRUCTURE CHECKS
+# =============================================================
+# Purpose:
+#   Validates that the AWS Cloud Validator (Project 03)
+#   is correctly structured and all Python files are valid.
+#
+# Note on real AWS checks:
+#   We cannot run live AWS API calls in GitHub Actions
+#   without storing AWS credentials as secrets.
+#   This pipeline validates structure and syntax only.
+#   Live checks run locally or via scheduled self-hosted runners.
+# =============================================================
+
+name: AWS Validator Structure Check
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - 'projects/project-03-aws-cloud-validator/**'
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+
+  validate-structure:
+    name: Validate Project Structure
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify collector files exist
+        run: |
+          echo "Checking collector files..."
+
+          FILES=(
+            "projects/project-03-aws-cloud-validator/collectors/collect_iam_state.py"
+            "projects/project-03-aws-cloud-validator/collectors/collect_s3_state.py"
+          )
+
+          for file in "${FILES[@]}"; do
+            if [ -f "$file" ]; then
+              echo "  [OK] $file"
+            else
+              echo "  [MISSING] $file"
+              exit 1
+            fi
+          done
+
+      - name: Verify validator files exist
+        run: |
+          echo "Checking validator files..."
+
+          FILES=(
+            "projects/project-03-aws-cloud-validator/validators/validate_iam.py"
+            "projects/project-03-aws-cloud-validator/validators/validate_s3.py"
+            "projects/project-03-aws-cloud-validator/validators/generate_report.py"
+            "projects/project-03-aws-cloud-validator/run_validator.py"
+          )
+
+          for file in "${FILES[@]}"; do
+            if [ -f "$file" ]; then
+              echo "  [OK] $file"
+            else
+              echo "  [MISSING] $file"
+              exit 1
+            fi
+          done
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Check Python syntax on all files
+        run: |
+          echo "Checking Python syntax..."
+
+          for file in \
+            projects/project-03-aws-cloud-validator/collectors/*.py \
+            projects/project-03-aws-cloud-validator/validators/*.py \
+            projects/project-03-aws-cloud-validator/run_validator.py; do
+            python3 -m py_compile "$file"
+            echo "  [OK] $file"
+          done
+
+      - name: Verify IAM validator has required checks
+        run: |
+          python3 - << 'EOF'
+          import ast
+          import sys
+
+          with open(
+              "projects/project-03-aws-cloud-validator/"
+              "validators/validate_iam.py"
+          ) as f:
+              source = f.read()
+
+          required_functions = [
+              "check_mfa_enabled",
+              "check_access_key_age",
+              "check_admin_access",
+              "check_inline_policies",
+              "check_no_groups",
+              "validate_iam_state"
+          ]
+
+          missing = []
+          for func in required_functions:
+              if f"def {func}" not in source:
+                  missing.append(func)
+
+          if missing:
+              print(f"MISSING FUNCTIONS: {missing}")
+              sys.exit(1)
+
+          print(f"All required IAM check functions present")
+          print(f"Functions: {required_functions}")
+          EOF
+
+      - name: Verify report generator creates both formats
+        run: |
+          python3 - << 'EOF'
+          import sys
+
+          with open(
+              "projects/project-03-aws-cloud-validator/"
+              "validators/generate_report.py"
+          ) as f:
+              source = f.read()
+
+          checks = [
+              ("json.dump",      "JSON report generation"),
+              (".md",            "Markdown report generation"),
+              ("compliance_score", "Compliance scoring"),
+              ("CRITICAL",       "Critical finding detection")
+          ]
+
+          errors = []
+          for pattern, description in checks:
+              if pattern not in source:
+                  errors.append(f"Missing: {description}")
+
+          if errors:
+              for e in errors:
+                  print(f"ERROR: {e}")
+              sys.exit(1)
+
+          print("Report generator contains all required elements")
+          EOF
