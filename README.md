@@ -12,4 +12,6 @@ Focus Areas:
 - ISO 27001
 - AWS Cloud Security
 - Rego / OPA
-- SQL-based control validation
+- SQL-based control validation# CI/CD Pipeline Status
+
+All workflows pass on every push to master.
