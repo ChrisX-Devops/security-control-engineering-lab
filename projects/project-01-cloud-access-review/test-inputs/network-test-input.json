@@ -1,0 +1,30 @@
+{
+  "security_groups": [
+    {
+      "name": "web-tier",
+      "inbound_rules": [
+        {"port": 443, "cidr": "0.0.0.0/0"},
+        {"port": 80,  "cidr": "0.0.0.0/0"}
+      ]
+    },
+    {
+      "name": "ssh-open",
+      "inbound_rules": [
+        {"port": 22, "cidr": "0.0.0.0/0"}
+      ]
+    },
+    {
+      "name": "database",
+      "inbound_rules": [
+        {"port": 5432, "cidr": "0.0.0.0/0"}
+      ]
+    },
+    {
+      "name": "internal-only",
+      "inbound_rules": [
+        {"port": 22,   "cidr": "10.0.0.0/8"},
+        {"port": 3306, "cidr": "10.0.1.0/24"}
+      ]
+    }
+  ]
+}

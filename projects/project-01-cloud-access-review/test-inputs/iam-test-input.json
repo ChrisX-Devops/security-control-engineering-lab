@@ -1,0 +1,58 @@
+{
+  "users": [
+    {
+      "username": "alice",
+      "status": "active",
+      "role_level": "engineer",
+      "mfa_enabled": true,
+      "access_keys": [
+        {
+          "id": "AKIA111",
+          "status": "Active",
+          "age_days": 30
+        }
+      ]
+    },
+    {
+      "username": "bob",
+      "status": "active",
+      "role_level": "engineer",
+      "mfa_enabled": false,
+      "access_keys": []
+    },
+    {
+      "username": "admin",
+      "status": "active",
+      "role_level": "admin",
+      "mfa_enabled": false,
+      "access_keys": [
+        {
+          "id": "AKIA222",
+          "status": "Active",
+          "age_days": 200
+        }
+      ]
+    },
+    {
+      "username": "old-service-account",
+      "status": "active",
+      "role_level": "engineer",
+      "mfa_enabled": true,
+      "access_keys": [
+        {
+          "id": "AKIA333",
+          "status": "Active",
+          "age_days": 120
+        }
+      ]
+    }
+  ],
+  "password_policy": {
+    "policy_exists": true,
+    "MinimumPasswordLength": 8,
+    "RequireSymbols": false,
+    "RequireNumbers": true,
+    "RequireUppercaseCharacters": true,
+    "RequireLowercaseCharacters": true
+  }
+}

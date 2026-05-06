@@ -1,0 +1,173 @@
+=============================================================
+OPA POLICY EVALUATION REPORT
+Date: 2026-05-06
+=============================================================
+
+--- IAM POLICIES ---
+
+Policy: iam_least_privilege
+Package: iam.access
+Violations: 8
+{
+  "result": [
+    {
+      "expressions": [
+        {
+          "value": [],
+          "text": "data.iam.access.deny",
+          "location": {
+            "row": 1,
+            "col": 1
+          }
+        }
+      ]
+    }
+  ]
+}
+
+Policy: key_rotation
+Package: iam.key_rotation
+Violations: 10
+{
+  "result": [
+    {
+      "expressions": [
+        {
+          "value": [
+            "User 'admin' has access key older than 90 days (current age: 200 days)",
+            "User 'old-service-account' has access key older than 90 days (current age: 120 days)"
+          ],
+          "text": "data.iam.key_rotation.deny",
+          "location": {
+            "row": 1,
+            "col": 1
+          }
+        }
+      ]
+    }
+  ]
+}
+
+Policy: mfa_required
+Package: iam.mfa
+Violations: 10
+{
+  "result": [
+    {
+      "expressions": [
+        {
+          "value": [
+            "User 'admin' is active but does not have MFA enabled",
+            "User 'bob' is active but does not have MFA enabled"
+          ],
+          "text": "data.iam.mfa.deny",
+          "location": {
+            "row": 1,
+            "col": 1
+          }
+        }
+      ]
+    }
+  ]
+}
+
+Policy: password_policy
+Package: iam.password_policy
+Violations: 10
+{
+  "result": [
+    {
+      "expressions": [
+        {
+          "value": [
+            "Password minimum length is 8 (required: 14)",
+            "Password policy does not require symbols"
+          ],
+          "text": "data.iam.password_policy.deny",
+          "location": {
+            "row": 1,
+            "col": 1
+          }
+        }
+      ]
+    }
+  ]
+}
+
+--- S3 POLICIES ---
+
+Policy: encryption_required
+Package: s3.encryption
+Violations: 9
+{
+  "result": [
+    {
+      "expressions": [
+        {
+          "value": [
+            "Bucket 'unencrypted-bucket' does not have server-side encryption enabled"
+          ],
+          "text": "data.s3.encryption.deny",
+          "location": {
+            "row": 1,
+            "col": 1
+          }
+        }
+      ]
+    }
+  ]
+}
+
+Policy: no_public_access
+Package: s3.public_access
+Violations: 11
+{
+  "result": [
+    {
+      "expressions": [
+        {
+          "value": [
+            "Bucket 'public-bucket' allows public ACLs",
+            "Bucket 'public-bucket' allows public bucket policies",
+            "Bucket 'public-bucket' does not have all public access block settings enabled"
+          ],
+          "text": "data.s3.public_access.deny",
+          "location": {
+            "row": 1,
+            "col": 1
+          }
+        }
+      ]
+    }
+  ]
+}
+
+--- NETWORK POLICIES ---
+
+Policy: no_open_ports
+Package: network.exposure
+Violations: 10
+{
+  "result": [
+    {
+      "expressions": [
+        {
+          "value": [
+            "CRITICAL: Security group 'database' exposes port 5432 to internet (0.0.0.0/0)",
+            "CRITICAL: Security group 'ssh-open' exposes port 22 to internet (0.0.0.0/0)"
+          ],
+          "text": "data.network.exposure.deny",
+          "location": {
+            "row": 1,
+            "col": 1
+          }
+        }
+      ]
+    }
+  ]
+}
+
+=============================================================
+TOTAL VIOLATIONS DETECTED: 68
+Report saved to: /home/ipup/security-control-engineering-lab/projects/project-01-cloud-access-review/evidence/policy-evaluation-2026-05-06.txt
+=============================================================
