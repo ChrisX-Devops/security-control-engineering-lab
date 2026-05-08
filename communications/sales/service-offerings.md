@@ -1,6 +1,7 @@
 # Security Control Engineering Services
 
-**For:** Fintech and SaaS startups preparing for SOC2 / ISO 27001
+**For:** Fintech, SaaS, and industrial companies preparing for
+SOC2 / ISO 27001 with cloud or hybrid environments
 
 ---
 
@@ -64,6 +65,34 @@ year-round. Eliminates the pre-audit panic cycle.
 
 ---
 
+## For Hybrid IT/OT Environments
+
+If your organization has both cloud infrastructure and
+operational technology (manufacturing equipment, industrial
+control systems, SCADA), this is what I can and cannot do:
+
+**What I CAN do:**
+- Secure your cloud and IT infrastructure
+- Assess your IT/OT network boundary for segmentation gaps
+- Document boundary controls for audit purposes
+- Map your IT controls to IEC 62443 conceptually
+- Coordinate with your OT security team or specialist
+
+**What I do NOT do:**
+- Assessment work inside your OT environment
+- PLC, SCADA, or field device security work
+- Industrial protocol analysis
+- IEC 62443 formal conformance assessments
+
+**For OT-specific work, I will recommend an OT specialist**
+and coordinate the boundary work between us.
+
+This honest scope is part of my pricing. I do not charge
+for work I cannot deliver, and I do not put your
+operational environment at risk by guessing.
+
+---
+
 ## What Makes This Different
 
 I do not sell you a dashboard. I build you a system.
@@ -76,6 +105,7 @@ Every assessment includes:
 - Code you own (not a SaaS subscription)
 - Mappings to SOC2, ISO 27001, and NDPA
 - Stakeholder-ready reports your CTO can read
+- Honest scope statements about IT/OT boundaries
 
 ---
 

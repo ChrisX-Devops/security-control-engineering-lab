@@ -32,3 +32,28 @@ a manual nightmare into provable evidence.
 This portfolio demonstrates production-grade security control
 engineering across IAM policy-as-code, SQL behavioral detection,
 AWS cloud validation, and unified compliance dashboards.
+
+---
+
+## Conceptual Foundation
+
+This portfolio is grounded in control systems thinking.
+Every system mirrors a component of an industrial control loop.
+
+See the `frameworks/` folder for:
+- `instrumentation-context.md` — How each project maps to
+  control system components
+- `honest-positioning.md` — Explicit statement of what I claim
+  and what I do not yet claim
+- `soc2-iec62443-crosswalk.md` — Conceptual mapping between
+  SOC2 and IEC 62443 frameworks
+
+## Honest Scope
+
+I build cloud security and compliance automation systems
+with IT/OT boundary awareness. I am pursuing ISA CCST
+certification to formalize control systems knowledge.
+
+For hands-on OT environment security work, I partner with
+OT specialists. The boundary between what I have proven
+and what I am building toward is documented and respected.
