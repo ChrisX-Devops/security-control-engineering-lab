@@ -1,70 +1,23 @@
 {
   "users": [
     {
-      "username": "alice",
+      "username": "audit-test-user",
       "status": "active",
       "role_level": "engineer",
       "mfa_enabled": true,
-      "attached_policies": ["ReadOnlyAccess"],
+      "attached_policies": [
+        "IAMAuditReadOnly"
+      ],
       "access_keys": [
         {
-          "id": "AKIA-ALICE-001",
+          "id": "AKIAXQN2I4AGE42EG54P",
           "status": "Active",
-          "age_days": 30
+          "age_days": 10
         }
       ]
-    },
-    {
-      "username": "bob",
-      "status": "active",
-      "role_level": "engineer",
-      "mfa_enabled": false,
-      "attached_policies": ["PowerUserAccess"],
-      "access_keys": []
-    },
-    {
-      "username": "admin-prod",
-      "status": "active",
-      "role_level": "admin",
-      "mfa_enabled": false,
-      "attached_policies": ["AdministratorAccess"],
-      "access_keys": [
-        {
-          "id": "AKIA-ADMIN-001",
-          "status": "Active",
-          "age_days": 247
-        }
-      ]
-    },
-    {
-      "username": "service-old-key",
-      "status": "active",
-      "role_level": "engineer",
-      "mfa_enabled": true,
-      "attached_policies": ["S3ReadOnly"],
-      "access_keys": [
-        {
-          "id": "AKIA-SVC-001",
-          "status": "Active",
-          "age_days": 142
-        }
-      ]
-    },
-    {
-      "username": "former-employee",
-      "status": "inactive",
-      "role_level": "engineer",
-      "mfa_enabled": false,
-      "attached_policies": [],
-      "access_keys": []
     }
   ],
   "password_policy": {
-    "policy_exists": true,
-    "MinimumPasswordLength": 8,
-    "RequireSymbols": false,
-    "RequireNumbers": true,
-    "RequireUppercaseCharacters": true,
-    "RequireLowercaseCharacters": true
+    "policy_exists": false
   }
 }

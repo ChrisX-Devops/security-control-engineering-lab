@@ -1,0 +1,27 @@
+{
+  "analysis_timestamp": "2026-05-09T11:29:18.193600+00:00",
+  "scans_analyzed": 8,
+  "standing_threshold": 3,
+  "status": "ANALYSIS_COMPLETE",
+  "total_standing_alarms": 1,
+  "standing_by_severity": {
+    "CRITICAL": 0,
+    "HIGH": 1,
+    "MEDIUM": 0,
+    "LOW": 0
+  },
+  "standing_alarms": [
+    {
+      "fingerprint": "data.iam.password_policy.deny|Password policy does not require symbols",
+      "policy_name": "Password Policy Strength",
+      "severity": "HIGH",
+      "soc2_mapping": "CC6.1",
+      "violation_message": "Password policy does not require symbols",
+      "first_seen": "2026-05-09T09:51:18.421460+00:00",
+      "latest_seen": "2026-05-09T11:29:17.096278+00:00",
+      "consecutive_scans": 8,
+      "days_outstanding": 0,
+      "escalation_status": "STANDARD_TRACKING"
+    }
+  ]
+}

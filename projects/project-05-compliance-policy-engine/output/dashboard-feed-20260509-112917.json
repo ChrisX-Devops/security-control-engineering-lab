@@ -1,0 +1,18 @@
+{
+  "scan_id": "20260509-112917",
+  "generated_at": "2026-05-09T11:29:18.043193+00:00",
+  "compliance_score": 90.0,
+  "total_findings": 5,
+  "by_severity": {
+    "CRITICAL": 0,
+    "HIGH": 5,
+    "MEDIUM": 0,
+    "LOW": 0
+  },
+  "by_domain": {
+    "iam": 5
+  },
+  "by_soc2_control": {
+    "CC6.1": 5
+  }
+}
