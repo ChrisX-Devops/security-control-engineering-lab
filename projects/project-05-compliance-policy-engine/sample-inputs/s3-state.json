@@ -1,0 +1,60 @@
+{
+  "buckets": [
+    {
+      "name": "secure-app-logs",
+      "encryption_enabled": true,
+      "public_access_blocked": true,
+      "public_access_block": {
+        "BlockPublicAcls": true,
+        "BlockPublicPolicy": true,
+        "IgnorePublicAcls": true,
+        "RestrictPublicBuckets": true
+      },
+      "tags": {
+        "classification": "internal"
+      }
+    },
+    {
+      "name": "customer-data-prod",
+      "encryption_enabled": false,
+      "public_access_blocked": false,
+      "public_access_block": {
+        "BlockPublicAcls": false,
+        "BlockPublicPolicy": false,
+        "IgnorePublicAcls": false,
+        "RestrictPublicBuckets": false
+      },
+      "tags": {
+        "classification": "sensitive"
+      }
+    },
+    {
+      "name": "marketing-assets",
+      "encryption_enabled": true,
+      "public_access_blocked": true,
+      "public_access_block": {
+        "BlockPublicAcls": true,
+        "BlockPublicPolicy": true,
+        "IgnorePublicAcls": true,
+        "RestrictPublicBuckets": true
+      },
+      "tags": {
+        "classification": "public"
+      }
+    },
+    {
+      "name": "dev-test-bucket",
+      "encryption_enabled": false,
+      "public_access_blocked": false,
+      "public_access_block": {
+        "BlockPublicAcls": false,
+        "BlockPublicPolicy": true,
+        "IgnorePublicAcls": false,
+        "RestrictPublicBuckets": true
+      },
+      "tags": {
+        "classification": "development"
+      }
+    }
+  ]
+}
